@@ -10,6 +10,8 @@
 %         LaTeX Team.
 %         Version 1.2 May 2026 Correct malformed date.
 %         LaTeX Team.
+%         Version 1.2a October 2026. Correct template key names for upcoming format.
+%         LaTeX Team.
 %
 % This program may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.1
@@ -23,7 +25,7 @@
 % documentation (such as it is) may be found after \endinput herein
 
 \NeedsTeXFormat{LaTeX2e}%
-\ProvidesPackage{secdot}[2026-05-16 v1.2 section numbers with dots]
+\ProvidesPackage{secdot}[2026-10-01 v1.2a section numbers with dots]
 
 % command to declare a particular section level to have a dot after
 % its number
@@ -58,11 +60,21 @@
 \EditInstance{heading}{subsubsection}{number-format=\@seccntformat{subsubsection}}
 \EditInstance{heading}{paragraph}{number-format=\@seccntformat{paragraph}}
 \EditInstance{heading}{subparagraph}{number-format=\@seccntformat{subparagraph}}
-\EditInstance{headformat}{paragraph}{number-title-sep=0pt}
-\EditInstance{headformat}{subparagraph}{number-title-sep=0pt}
-\EditInstance{headformat}{section}{number-title-sep=0pt}
-\EditInstance{headformat}{subsection}{number-title-sep=0pt}
-\EditInstance{headformat}{subsubsection}{number-title-sep=0pt}
+\IfFormatAtLeastTF{2026-11-01}%
+  {%
+    \EditInstance{headformat}{paragraph}{separator-b={}}
+    \EditInstance{headformat}{subparagraph}{separator-b={}}
+    \EditInstance{headformat}{section}{separator-b={}}
+    \EditInstance{headformat}{subsection}{separator-b={}}
+    \EditInstance{headformat}{subsubsection}{separator-b={}}
+  }%
+  {%
+    \EditInstance{headformat}{paragraph}{number-title-sep=0pt}
+    \EditInstance{headformat}{subparagraph}{number-title-sep=0pt}
+    \EditInstance{headformat}{section}{number-title-sep=0pt}
+    \EditInstance{headformat}{subsection}{number-title-sep=0pt}
+    \EditInstance{headformat}{subsubsection}{number-title-sep=0pt}
+  }%
 }
 \fi
 \endinput
